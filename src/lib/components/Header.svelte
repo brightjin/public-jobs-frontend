@@ -15,42 +15,42 @@
   let mobileMenuOpen = $state(false);
 </script>
 
-<header class="bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 sticky top-0 z-50 transition-all duration-300">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="bg-white/95 backdrop-blur-xl border-b border-gray-200 sticky top-0 z-50 transition-all duration-200">
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="flex justify-between items-center h-16">
-      <!-- 로고 - Apple 스타일 -->
+      <!-- 로고 - Toss 스타일 -->
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-3 group">
-          <div class="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-            <span class="text-white font-bold text-lg">P</span>
+          <div class="w-10 h-10 gradient-toss-blue rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+            <span class="text-white font-black text-lg">🏛️</span>
           </div>
-          <span class="text-xl font-semibold text-black dark:text-white tracking-tight">
+          <span class="text-xl font-bold text-gray-900 tracking-tight">
             {env.PUBLIC_SITE_NAME}
           </span>
         </a>
       </div>
       
-      <!-- 데스크톱 네비게이션 - Apple 스타일 -->
-      <div class="hidden md:flex items-center space-x-1">
+      <!-- 데스크톱 네비게이션 - Toss 스타일 -->
+      <div class="hidden md:flex items-center space-x-2">
         {#each navigation as item}
           <a 
             href={item.href}
-            class="flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+            class="flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200
                    {$page.url.pathname === item.href 
-                     ? 'bg-gray-900 text-white dark:bg-white dark:text-black' 
-                     : 'text-gray-600 hover:text-black hover:bg-gray-100/50 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/10'}"
+                     ? 'bg-blue-600 text-white shadow-md' 
+                     : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'}"
           >
             <span class="text-base">{item.icon}</span>
-            <span class="tracking-tight">{item.name}</span>
+            <span>{item.name}</span>
           </a>
         {/each}
       </div>
       
-      <!-- 사용자 메뉴 -->
-      <div class="hidden md:flex items-center space-x-4">
+      <!-- 사용자 메뉴 - Toss 스타일 -->
+      <div class="hidden md:flex items-center space-x-3">
         {#if $user}
-          <div class="flex items-center space-x-2">
-            <span class="text-sm text-apple-text-secondary">안녕하세요, {$user.name}님</span>
+          <div class="flex items-center space-x-3">
+            <span class="text-sm text-gray-600 font-medium">안녕하세요, {$user.name}님 👋</span>
             <Button variant="outline" size="sm">로그아웃</Button>
           </div>
         {:else}
@@ -61,43 +61,43 @@
         {/if}
       </div>
       
-      <!-- 모바일 메뉴 버튼 -->
+      <!-- 모바일 메뉴 버튼 - Toss 스타일 -->
       <div class="md:hidden">
         <button
           type="button"
-          class="p-2 rounded-lg text-apple-text-secondary hover:text-apple-text hover:bg-gray-100 dark:hover:bg-gray-800"
+          class="p-2 rounded-xl text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
           onclick={() => mobileMenuOpen = !mobileMenuOpen}
         >
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
     
-    <!-- 모바일 메뉴 -->
+    <!-- 모바일 메뉴 - Toss 스타일 -->
     {#if mobileMenuOpen}
-      <div class="md:hidden border-t border-gray-200 dark:border-gray-700 pt-4 pb-4">
-        <div class="space-y-2">
+      <div class="md:hidden border-t border-gray-200 pt-4 pb-4 bg-gray-50/50">
+        <div class="space-y-1">
           {#each navigation as item}
             <a
               href={item.href}
-              class="flex items-center space-x-2 px-3 py-2 rounded-lg text-base font-medium transition-colors
+              class="flex items-center space-x-3 px-4 py-3 mx-2 rounded-xl text-base font-bold transition-all duration-200
                      {$page.url.pathname === item.href 
-                       ? 'bg-apple-blue text-white' 
-                       : 'text-apple-text hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800'}"
+                       ? 'bg-blue-600 text-white shadow-md' 
+                       : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'}"
               onclick={() => mobileMenuOpen = false}
             >
-              <span>{item.icon}</span>
+              <span class="text-lg">{item.icon}</span>
               <span>{item.name}</span>
             </a>
           {/each}
         </div>
         
-        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="mt-6 pt-4 border-t border-gray-200 px-2">
           {#if $user}
-            <div class="space-y-2">
-              <p class="px-3 text-sm text-apple-text-secondary">안녕하세요, {$user.name}님</p>
+            <div class="space-y-3">
+              <p class="px-2 text-sm text-gray-600 font-medium">안녕하세요, {$user.name}님 👋</p>
               <Button variant="outline" size="sm" class="w-full">로그아웃</Button>
             </div>
           {:else}

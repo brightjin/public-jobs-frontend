@@ -57,160 +57,156 @@
 <Header />
 
 <main>
-  <!-- 히어로 섹션 - Apple 스타일 -->
-  <section class="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
-    <!-- 배경 그라데이션 -->
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50"></div>
+  <!-- 히어로 섹션 - Toss 스타일 -->
+  <section class="relative min-h-screen flex items-center justify-center gradient-toss-blue overflow-hidden">
+    <!-- 토스 스타일 배경 패턴 -->
+    <div class="absolute inset-0">
+      <!-- 그라데이션 오버레이 -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-purple-600/80 to-blue-800/90"></div>
+      <!-- 기하학적 패턴 -->
+      <div class="absolute top-0 left-0 w-full h-full opacity-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-white rounded-full blur-2xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white rounded-full blur-xl"></div>
+      </div>
+    </div>
     
     <!-- 콘텐츠 -->
-    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-      <div class="space-y-8">
-        <!-- 메인 헤드라인 -->
-        <h1 class="text-display text-5xl md:text-7xl lg:text-8xl font-semibold text-black tracking-tight">
-          AI가 찾아주는
-          <br />
-          <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+      <div class="space-y-12">
+        <!-- 메인 헤드라인 - 토스 스타일 -->
+        <h1 class="text-toss-display text-4xl md:text-6xl lg:text-7xl text-white leading-tight">
+          <span class="block mb-4">🚀 AI가 찾아주는</span>
+          <span class="block bg-gradient-to-r from-yellow-300 via-white to-mint-300 bg-clip-text text-transparent font-black">
             맞춤형 공공기관 채용
           </span>
         </h1>
         
         <!-- 서브 헤드라인 -->
-        <p class="text-body text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-          이력서를 업로드하면 AI가 당신에게 최적화된 채용공고를 추천합니다.<br />
-          Apple 수준의 디자인과 최첨단 기술로 새로운 채용 경험을 만나보세요.
+        <p class="text-toss-body text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          이력서 한 번 업로드로 AI가 당신에게 딱 맞는 채용공고를 찾아드려요.<br />
+          더 빠르고, 더 정확하고, 더 쉽게 꿈의 직장을 만나보세요! ✨
         </p>
         
-        <!-- CTA 버튼 -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-          <Button variant="primary" size="lg" class="px-8 py-4 text-lg">
-            이력서 업로드하기
-          </Button>
-          <Button variant="secondary" size="lg" class="px-8 py-4 text-lg">
-            내게 딱 맞는 포지션은?
-          </Button>
+        <!-- CTA 버튼 - 토스 스타일 -->
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+          <button class="btn-toss px-12 py-5 text-lg bg-white text-blue-600 hover:bg-gray-50 shadow-xl">
+            🎯 바로 시작하기
+          </button>
+          <button class="btn-toss-outline px-12 py-5 text-lg text-white border-white hover:bg-white hover:text-blue-600">
+            💡 어떻게 작동하나요?
+          </button>
         </div>
         
-        <!-- 부가 정보 -->
-        <div class="pt-12">
-          <p class="text-fine text-gray-500">
-            지금 시작하세요. 1분이 이면 충분합니다.
-          </p>
+        <!-- 토스 스타일 통계 -->
+        <div class="pt-16">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div class="text-center">
+              <div class="text-3xl font-black text-yellow-300 mb-2">10,000+</div>
+              <div class="text-sm text-white/80">등록된 채용공고</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-mint-300 mb-2">95%</div>
+              <div class="text-sm text-white/80">매칭 정확도</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-black text-pink-300 mb-2">24/7</div>
+              <div class="text-sm text-white/80">AI 지원 서비스</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     
-    <!-- 부유하는 요소들 -->
-    <div class="absolute top-20 left-20 w-20 h-20 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
-    <div class="absolute bottom-32 right-16 w-12 h-12 bg-purple-100 rounded-full opacity-40 animate-pulse delay-1000"></div>
-    <div class="absolute top-1/3 right-20 w-16 h-16 bg-indigo-100 rounded-full opacity-50 animate-pulse delay-500"></div>
+    <!-- 토스 스타일 플로팅 요소들 -->
+    <div class="absolute top-20 left-10 w-16 h-16 bg-yellow-400 rounded-2xl opacity-20 animate-bounce delay-1000"></div>
+    <div class="absolute bottom-40 right-20 w-12 h-12 bg-mint-400 rounded-full opacity-30 animate-pulse delay-500"></div>
+    <div class="absolute top-1/3 right-10 w-20 h-20 bg-pink-400 rounded-3xl opacity-15 animate-bounce delay-2000"></div>
+    <div class="absolute bottom-20 left-1/4 w-8 h-8 bg-white rounded-full opacity-40 animate-ping"></div>
   </section>
 
-  <!-- 주요 기능 섹션 - Apple 스타일 -->
-  <section class="py-32 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <!-- 섹션 헤더 -->
-      <div class="text-center mb-20">
-        <h2 class="text-headline text-4xl md:text-6xl font-semibold text-black mb-6">
-          왜 {env.PUBLIC_SITE_NAME} 인가요?
+  <!-- 주요 기능 섹션 - Toss 스타일 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- 섹션 헤더 - 토스 스타일 -->
+      <div class="text-center mb-16">
+        <div class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-bold mb-6">
+          ✨ 특별한 기능들
+        </div>
+        <h2 class="text-toss-headline text-3xl md:text-5xl text-gray-900 mb-6">
+          왜 {env.PUBLIC_SITE_NAME}인가요?
         </h2>
-        <p class="text-body text-xl text-gray-600 max-w-4xl mx-auto">
-          최신 AI 기술로<br />
-          공공기관 채용의 새로운 경험을 제공합니다
+        <p class="text-toss-body text-lg text-gray-600 max-w-3xl mx-auto">
+          토스뱅크처럼 쉽고 직관적인 UI로<br />
+          AI 기반 공공기관 채용의 새로운 경험을 제공해요! 🎉
         </p>
       </div>
       
-      <!-- 기능 카드들 -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <!-- 기능 카드들 - 토스 스타일 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- AI 이력서 분석 -->
-        <div class="card-apple p-12 text-center group">
-          <div class="relative mb-8">
-            <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl transition-all duration-500">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <!-- 장식적 원소 -->
-            <div class="absolute -top-2 -right-2 w-6 h-6 bg-blue-200 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300"></div>
+        <div class="card-toss p-6 text-left group">
+          <!-- 토스 스타일 아이콘 -->
+          <div class="w-14 h-14 gradient-toss-blue rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">📄</span>
           </div>
           
-          <h3 class="text-headline text-2xl font-semibold text-black mb-4">
+          <h3 class="text-toss-headline text-xl text-gray-900 mb-3">
             AI 이력서 분석
           </h3>
-          <p class="text-body text-gray-600 leading-relaxed">
-            PDF나 Word 파일을 업로드하면 AI가 자동으로 분석하여<br />
-            입력 필드에 정확하게 채워드립니다
+          <p class="text-toss-body text-gray-600 leading-relaxed mb-6">
+            파일만 끌어다 놓으면 끝!<br />
+            AI가 자동으로 이력서를 분석해서<br />
+            입력 폼에 척척 채워드려요 ⚡
           </p>
           
-          <!-- 진행 표시줄 -->
-          <div class="mt-8 pt-6 border-t border-gray-100">
-            <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
-              <span>정확도</span>
-              <span>95%</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-1">
-              <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-1 rounded-full w-[95%] group-hover:w-full transition-all duration-1000"></div>
-            </div>
+          <!-- 토스 스타일 뱃지 -->
+          <div class="flex gap-2">
+            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">정확도 95%</span>
+            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-bold">3초 완료</span>
           </div>
         </div>
         
         <!-- 정확한 매칭 -->
-        <div class="card-apple p-12 text-center group">
-          <div class="relative mb-8">
-            <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl transition-all duration-500">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-              </svg>
-            </div>
-            <div class="absolute -bottom-1 -left-2 w-4 h-4 bg-green-200 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300 delay-100"></div>
+        <div class="card-toss p-6 text-left group">
+          <div class="w-14 h-14 gradient-toss-mint rounded-2xl flex items-center justify-center mb-6">
+            <span class="text-2xl">🎯</span>
           </div>
           
-          <h3 class="text-headline text-2xl font-semibold text-black mb-4">
+          <h3 class="text-toss-headline text-xl text-gray-900 mb-3">
             정확한 매칭
           </h3>
-          <p class="text-body text-gray-600 leading-relaxed">
-            당신의 경력과 자격을 AI가 분석하여<br />
-            90%+ 정확도로 최적의 공고를 추천합니다
+          <p class="text-toss-body text-gray-600 leading-relaxed mb-6">
+            내 경력과 자격증을 분석해서<br />
+            딱 맞는 공고만 골라드려요!<br />
+            "이거 완전 내가 찾던 거네!" 🤩
           </p>
           
-          <div class="mt-8 pt-6 border-t border-gray-100">
-            <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
-              <span>매칭 성공률</span>
-              <span>92%</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-1">
-              <div class="bg-gradient-to-r from-green-500 to-green-600 h-1 rounded-full w-[92%] group-hover:w-full transition-all duration-1000 delay-200"></div>
-            </div>
+          <div class="flex gap-2">
+            <span class="bg-mint-100 text-mint-600 px-3 py-1 rounded-full text-xs font-bold">매칭률 92%</span>
+            <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-bold">실시간 추천</span>
           </div>
         </div>
         
         <!-- 24시간 AI 챗봇 -->
-        <div class="card-apple p-12 text-center group">
-          <div class="relative mb-8">
-            <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-2xl transition-all duration-500">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-              </svg>
-            </div>
-            <div class="absolute -top-1 -left-1 w-3 h-3 bg-purple-200 rounded-full opacity-80 animate-ping"></div>
-            <div class="absolute -bottom-2 -right-1 w-5 h-5 bg-purple-200 rounded-full opacity-60 group-hover:scale-125 transition-transform duration-300 delay-75"></div>
+        <div class="card-toss p-6 text-left group">
+          <div class="w-14 h-14 gradient-toss-warm rounded-2xl flex items-center justify-center mb-6 relative">
+            <span class="text-2xl">🤖</span>
+            <div class="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
           </div>
           
-          <h3 class="text-headline text-2xl font-semibold text-black mb-4">
+          <h3 class="text-toss-headline text-xl text-gray-900 mb-3">
             24시간 AI 챗봇
           </h3>
-          <p class="text-body text-gray-600 leading-relaxed">
-            채용 관련 궁금한 점을 언제든지<br />
-            AI 챗봇에게 물어보세요. 즉시 답변드립니다
+          <p class="text-toss-body text-gray-600 leading-relaxed mb-6">
+            궁금한 게 있으면 언제든 물어보세요!<br />
+            밤낮없이 친절하게 답변해드려요<br />
+            마치 채용 전문가가 옆에 있는 것처럼 💬
           </p>
           
-          <div class="mt-8 pt-6 border-t border-gray-100">
-            <div class="flex items-center justify-between text-sm text-gray-500 mb-2">
-              <span>응답 속도</span>
-              <span>&lt; 3초</span>
-            </div>
-            <div class="w-full bg-gray-200 rounded-full h-1">
-              <div class="bg-gradient-to-r from-purple-500 to-purple-600 h-1 rounded-full w-[98%] group-hover:w-full transition-all duration-1000 delay-300"></div>
-            </div>
+          <div class="flex gap-2">
+            <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-bold">응답 3초</span>
+            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-xs font-bold">24시간 운영</span>
           </div>
         </div>
       </div>

@@ -1,14 +1,45 @@
 @import 'tailwindcss';
 
-/* Apple-style CSS Reset and Base Styles */
+/* Toss Bank-style CSS Reset and Base Styles */
+:root {
+  /* Toss Primary Colors */
+  --toss-blue: #0064ff;
+  --toss-blue-light: #e6f2ff;
+  --toss-blue-dark: #0051cc;
+  
+  /* Toss Secondary Colors */
+  --toss-purple: #6c5ce7;
+  --toss-mint: #00d2d3;
+  --toss-yellow: #ffdd00;
+  --toss-orange: #ff6b35;
+  --toss-pink: #fd79a8;
+  
+  /* Toss Grays */
+  --toss-gray-50: #f8fafc;
+  --toss-gray-100: #f1f5f9;
+  --toss-gray-200: #e2e8f0;
+  --toss-gray-300: #cbd5e1;
+  --toss-gray-400: #94a3b8;
+  --toss-gray-500: #64748b;
+  --toss-gray-600: #475569;
+  --toss-gray-700: #334155;
+  --toss-gray-800: #1e293b;
+  --toss-gray-900: #0f172a;
+  
+  /* Toss Success/Warning/Error */
+  --toss-success: #10b981;
+  --toss-warning: --toss-yellow;
+  --toss-error: #ef4444;
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.47059;
-  letter-spacing: -0.022em;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -17,151 +48,181 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  color: #1d1d1f;
-  font-size: 17px;
+  color: var(--toss-gray-900);
+  font-size: 16px;
   font-weight: 400;
 }
 
-/* Apple-style components */
+/* Toss Bank-style components */
 @layer components {
-  .btn-apple {
-    @apply inline-flex items-center justify-center px-6 py-3 font-semibold text-white;
-    @apply transition-all duration-300 ease-out;
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-    background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
-    border-radius: 980px;
-    font-size: 17px;
-    line-height: 1.23536;
-    letter-spacing: -0.022em;
-    min-height: 44px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  .btn-toss {
+    @apply inline-flex items-center justify-center px-6 py-4 font-bold text-white;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-200;
+    background: var(--toss-blue);
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    min-height: 56px;
+    box-shadow: 0 2px 8px rgba(0, 100, 255, 0.2);
+    border: none;
   }
   
-  .btn-apple:hover {
+  .btn-toss:hover {
+    background: var(--toss-blue-dark);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 100, 255, 0.3);
   }
   
-  .btn-apple:active {
+  .btn-toss:active {
     transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 2px 8px rgba(0, 100, 255, 0.2);
   }
   
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 font-semibold;
-    @apply bg-gray-50 text-gray-900 hover:bg-gray-100;
+  .btn-toss-secondary {
+    @apply inline-flex items-center justify-center px-6 py-4 font-bold;
+    @apply bg-white text-gray-900 hover:bg-gray-50;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-4 focus:ring-gray-200;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    min-height: 56px;
+    border: 2px solid var(--toss-gray-200);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-toss-outline {
+    @apply inline-flex items-center justify-center px-6 py-4 font-bold;
+    @apply bg-transparent hover:bg-blue-50;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-200;
+    border-radius: 12px;
+    border: 2px solid var(--toss-blue);
+    color: var(--toss-blue);
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    min-height: 56px;
+  }
+  
+  .card-toss {
+    @apply bg-white rounded-2xl;
     @apply transition-all duration-300 ease-out;
-    @apply focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2;
-    border-radius: 980px;
-    font-size: 17px;
-    line-height: 1.23536;
-    letter-spacing: -0.022em;
-    min-height: 44px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--toss-gray-200);
+    overflow: hidden;
   }
   
-  .btn-outline {
-    @apply inline-flex items-center justify-center px-6 py-3 font-semibold;
-    @apply bg-transparent hover:bg-white;
-    @apply transition-all duration-300 ease-out;
-    @apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2;
-    border-radius: 980px;
-    border: 2px solid currentColor;
-    font-size: 17px;
-    line-height: 1.23536;
-    letter-spacing: -0.022em;
-    min-height: 44px;
+  .card-toss:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--toss-blue);
   }
   
-  .card-apple {
-    @apply bg-white rounded-3xl;
-    @apply transition-all duration-500 ease-out;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-  }
-  
-  .card-apple:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-  }
-  
-  .input-apple {
+  .input-toss {
     @apply w-full px-4 py-4 text-base bg-white;
-    @apply border-2 border-gray-200 rounded-2xl;
-    @apply focus:outline-none focus:border-blue-500;
-    @apply transition-all duration-300 ease-out;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.23536;
-    letter-spacing: -0.022em;
+    @apply border-2 border-gray-200 rounded-xl;
+    @apply focus:outline-none;
+    @apply transition-all duration-200 ease-out;
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    min-height: 56px;
   }
   
-  .input-apple:focus {
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+  .input-toss:focus {
+    border-color: var(--toss-blue);
+    box-shadow: 0 0 0 4px rgba(0, 100, 255, 0.1);
   }
   
-  /* Apple-style typography */
-  .text-display {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.003em;
-    line-height: 1.05;
+  /* Toss-style typography */
+  .text-toss-display {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
   }
   
-  .text-headline {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.003em;
-    line-height: 1.08333;
+  .text-toss-headline {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
   
-  .text-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  .text-toss-body {
+    font-family: 'Pretendard', system-ui, sans-serif;
     font-weight: 400;
-    letter-spacing: -0.022em;
-    line-height: 1.47059;
+    letter-spacing: -0.02em;
+    line-height: 1.6;
   }
   
-  .text-fine {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-    font-weight: 400;
-    letter-spacing: -0.022em;
-    line-height: 1.33337;
+  .text-toss-caption {
+    font-family: 'Pretendard', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
     font-size: 14px;
+  }
+  
+  /* Toss-style gradients */
+  .gradient-toss-blue {
+    background: linear-gradient(135deg, var(--toss-blue) 0%, var(--toss-purple) 100%);
+  }
+  
+  .gradient-toss-mint {
+    background: linear-gradient(135deg, var(--toss-mint) 0%, var(--toss-blue) 100%);
+  }
+  
+  .gradient-toss-warm {
+    background: linear-gradient(135deg, var(--toss-orange) 0%, var(--toss-pink) 100%);
   }
 }
 
-/* Dark mode support - Apple style */
+/* Dark mode support - Toss style */
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #000000;
-    color: #f5f5f7;
+  :root {
+    --toss-gray-50: #0f172a;
+    --toss-gray-100: #1e293b;
+    --toss-gray-200: #334155;
+    --toss-gray-300: #475569;
+    --toss-gray-800: #e2e8f0;
+    --toss-gray-900: #f8fafc;
   }
   
-  .card-apple {
-    background-color: #1d1d1f;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+  body {
+    background-color: var(--toss-gray-50);
+    color: var(--toss-gray-900);
+  }
+  
+  .card-toss {
+    background-color: var(--toss-gray-100);
+    border: 1px solid var(--toss-gray-200);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
   
-  .input-apple {
-    background-color: #1d1d1f;
-    border: 2px solid #424245;
-    color: #f5f5f7;
+  .input-toss {
+    background-color: var(--toss-gray-100);
+    border: 2px solid var(--toss-gray-200);
+    color: var(--toss-gray-900);
   }
   
-  .input-apple:focus {
-    border-color: #007aff;
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
+  .input-toss:focus {
+    border-color: var(--toss-blue);
+    box-shadow: 0 0 0 4px rgba(0, 100, 255, 0.2);
   }
   
-  .btn-secondary {
-    background-color: #1d1d1f;
-    color: #f5f5f7;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .btn-toss-secondary {
+    background-color: var(--toss-gray-100);
+    color: var(--toss-gray-900);
+    border: 2px solid var(--toss-gray-200);
   }
   
-  .btn-secondary:hover {
-    background-color: #2c2c2e;
+  .btn-toss-secondary:hover {
+    background-color: var(--toss-gray-200);
   }
 }
