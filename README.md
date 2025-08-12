@@ -1,7 +1,6 @@
 # 🏛️ 공공기관 채용정보 플랫폼 Frontend
 
-<video src="screenshot.mp4" controls autoplay loop muted width="800">
-</video>
+[![Watch the video](https://github.com/syschat0/public-jobs-frontend/blob/main/screenshot.png?raw=true)](https://github.com/syschat0/public-jobs-frontend/raw/refs/heads/main/screenshot.mp4)
 
 > **이력서 분석, 채용 매칭, 24시간 채팅응대 × AI 기반 신개념 공공 채용 포털**
 
