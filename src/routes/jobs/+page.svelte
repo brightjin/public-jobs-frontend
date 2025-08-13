@@ -3,79 +3,12 @@
   import Footer from '$lib/components/Footer.svelte';
   import JobCard from '$lib/components/JobCard.svelte';
   import Button from '$lib/components/Button.svelte';
-  import { jobs, type Job } from '$lib/stores';
+  import { jobs, mockJobsAPI, mockJobs } from '$lib/stores';
   import { onMount } from 'svelte';
   import { env } from '$env/dynamic/public';
   
-  // 샘플 채용공고 데이터 확장
-  const allJobs: Job[] = [
-    {
-      id: '1',
-      title: '서울시청 정보보안 담당자',
-      organization: '서울특별시',
-      location: '서울시 중구',
-      salary: '6급 상당 (연봉 4,500만원)',
-      requirements: ['정보보안기사', '3년 이상 경력', '컴퓨터공학 전공'],
-      deadline: '2025-08-25',
-      description: '서울시 정보보안 업무 담당',
-      matchScore: 92
-    },
-    {
-      id: '2',
-      title: '부산광역시 디지털정책 기획자',
-      organization: '부산광역시',
-      location: '부산시 연제구',
-      salary: '7급 상당 (연봉 3,800만원)',
-      requirements: ['행정학 전공', '정책기획 경험', '영어 중급'],
-      deadline: '2025-08-20',
-      description: '디지털 전환 정책 수립 및 추진',
-      matchScore: 78
-    },
-    {
-      id: '3',
-      title: '대구시교육청 AI교육 전문관',
-      organization: '대구광역시교육청',
-      location: '대구시 중구',
-      salary: '연구관 상당 (연봉 5,200만원)',
-      requirements: ['교육학 전공', 'AI 관련 자격증', '교육경력 5년'],
-      deadline: '2025-08-30',
-      description: 'AI 교육과정 개발 및 운영',
-      matchScore: 85
-    },
-    {
-      id: '4',
-      title: '인천시 스마트시티 개발자',
-      organization: '인천광역시',
-      location: '인천시 연수구',
-      salary: '6급 상당 (연봉 4,200만원)',
-      requirements: ['컴퓨터공학 전공', 'Python 능숙', 'IoT 경험'],
-      deadline: '2025-09-05',
-      description: '스마트시티 플랫폼 개발 및 운영',
-      matchScore: 88
-    },
-    {
-      id: '5',
-      title: '경기도청 데이터분석 전문가',
-      organization: '경기도',
-      location: '경기도 수원시',
-      salary: '7급 상당 (연봉 3,900만원)',
-      requirements: ['통계학 전공', 'R/Python', '빅데이터 분석 경험'],
-      deadline: '2025-08-28',
-      description: '도정 데이터 분석 및 정책 수립 지원',
-      matchScore: 76
-    },
-    {
-      id: '6',
-      title: '강원도 관광정책 기획자',
-      organization: '강원도',
-      location: '강원도 춘천시',
-      salary: '7급 상당 (연봉 3,700만원)',
-      requirements: ['관광학 전공', '기획 경험', '영어/중국어'],
-      deadline: '2025-09-10',
-      description: '강원도 관광 활성화 정책 기획 및 추진',
-      matchScore: 72
-    }
-  ];
+  // Mock 데이터 사용
+  const allJobs = mockJobs;
   
   let filteredJobs = $state(allJobs);
   let searchQuery = $state('');
