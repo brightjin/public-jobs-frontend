@@ -119,6 +119,14 @@
     const radius = Math.min(W, H) / 2 - 40;
     const N = STATS.length;
 
+    // 그룹별 색상 정의
+    const groupColors = {
+      'A': '#3b82f6', // blue-500
+      'B': '#10b981', // green-500
+      'C': '#8b5cf6', // purple-500
+      'D': '#f59e0b'  // orange-500
+    };
+
     // 배경 그리드
     ctx.strokeStyle = '#e5e7eb';
     ctx.lineWidth = 1;
@@ -143,8 +151,7 @@
       ctx.stroke();
     });
 
-    // 레이블
-    ctx.fillStyle = '#374151';
+    // 레이블 (그룹별 색상 적용)
     ctx.font = '12px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui';
     ctx.textAlign = 'center';
     
@@ -154,6 +161,9 @@
       const x = cx + Math.cos(angle) * labelRadius;
       const y = cy + Math.sin(angle) * labelRadius;
       
+      // 그룹별 색상 설정
+      ctx.fillStyle = groupColors[stat.group as keyof typeof groupColors] || '#374151';
+      ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui';
       ctx.fillText(stat.name, x, y + 4);
     });
 
@@ -179,6 +189,23 @@
     ctx.strokeStyle = '#3b82f6';
     ctx.lineWidth = 2;
     ctx.stroke();
+
+    // 데이터 포인트에도 그룹별 색상 적용
+    STATS.forEach((stat, i) => {
+      const weight = weights[stat.key] || 0;
+      const ratio = weight / 5;
+      const angle = (Math.PI * 2 * i / N) - Math.PI / 2;
+      const x = cx + Math.cos(angle) * radius * ratio;
+      const y = cy + Math.sin(angle) * radius * ratio;
+      
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = groupColors[stat.group as keyof typeof groupColors] || '#3b82f6';
+      ctx.fill();
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
   }
 
   // 저장
@@ -297,47 +324,57 @@
 
         <!-- 가중치 조정 -->
         {#if !isPreset}
-          <div class="space-y-4">
+          <div class="space-y-6">
             <h3 class="text-headline text-lg text-gray-900 dark:text-gray-100">가중치 조정</h3>
             
-            {#each ['A', 'B', 'C', 'D'] as group}
-              {@const groupStats = STATS.filter(s => s.group === group)}
-              {@const groupName = groupStats[0]?.category || ''}
-              
-              <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-4">
-                <h4 class="text-fine font-medium text-gray-800 dark:text-gray-200 mb-3">{groupName}</h4>
+            <!-- 간단한 그룹별 조정 -->
+            <div class="space-y-4">
+              {#each ['A', 'B', 'C', 'D'] as group}
+                {@const groupStats = STATS.filter(s => s.group === group)}
+                {@const groupName = groupStats[0]?.category || ''}
+                {@const groupColor = {
+                  'A': 'blue',
+                  'B': 'green', 
+                  'C': 'purple',
+                  'D': 'orange'
+                }[group]}
                 
-                <div class="space-y-3">
-                  {#each groupStats as stat}
-                    <div class="flex items-center justify-between">
-                      <label class="text-fine text-gray-700 dark:text-gray-300">
-                        {stat.name}
-                      </label>
-                      <div class="flex items-center gap-3">
-                        <input
-                          type="range"
-                          min="0"
-                          max="5"
-                          step="1"
-                          bind:value={customWeights[stat.key]}
-                          onchange={updateVisualization}
-                          class="w-32"
-                        />
-                        <input
-                          type="number"
-                          min="0"
-                          max="5"
-                          step="1"
-                          bind:value={customWeights[stat.key]}
-                          onchange={updateVisualization}
-                          class="w-16 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800"
-                        />
+                <div class="border border-gray-200 dark:border-gray-700 rounded-2xl p-5">
+                  <!-- 그룹 헤더 -->
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-3 h-3 bg-{groupColor}-500 rounded-full"></div>
+                    <h4 class="text-fine font-medium text-gray-900 dark:text-gray-100">
+                      {groupName}
+                    </h4>
+                  </div>
+                  
+                  <!-- 능력치 목록 - 심플한 행 형태 -->
+                  <div class="space-y-3">
+                    {#each groupStats as stat}
+                      <div class="flex items-center justify-between py-2">
+                        <span class="text-fine text-gray-700 dark:text-gray-300">
+                          {stat.name}
+                        </span>
+                        <div class="flex items-center gap-3">
+                          <input
+                            type="range"
+                            min="0"
+                            max="5"
+                            step="1"
+                            bind:value={customWeights[stat.key]}
+                            onchange={updateVisualization}
+                            class="w-24 range-{groupColor}"
+                          />
+                          <div class="w-8 text-center text-fine font-semibold text-gray-900 dark:text-gray-100">
+                            {customWeights[stat.key] || 0}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  {/each}
+                    {/each}
+                  </div>
                 </div>
-              </div>
-            {/each}
+              {/each}
+            </div>
           </div>
         {/if}
 
@@ -371,12 +408,26 @@
           <div class="space-y-4">
             <h3 class="text-headline text-lg text-gray-900 dark:text-gray-100">가중치 요약</h3>
             
-            <div class="grid grid-cols-2 gap-4">
-              {#each STATS as stat}
-                <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-                  <span class="text-fine text-gray-700 dark:text-gray-300">{stat.name}</span>
+            <!-- 간단한 그룹별 요약 -->
+            <div class="space-y-3">
+              {#each ['A', 'B', 'C', 'D'] as group}
+                {@const groupStats = STATS.filter(s => s.group === group)}
+                {@const groupName = groupStats[0]?.category || ''}
+                {@const groupColor = {
+                  'A': 'blue',
+                  'B': 'green', 
+                  'C': 'purple',
+                  'D': 'orange'
+                }[group]}
+                {@const groupAvg = (groupStats.reduce((sum, stat) => sum + (customWeights[stat.key] || 0), 0) / groupStats.length).toFixed(1)}
+                
+                <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                  <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 bg-{groupColor}-500 rounded-full"></div>
+                    <span class="text-fine text-gray-700 dark:text-gray-300">{groupName}</span>
+                  </div>
                   <span class="text-fine font-semibold text-gray-900 dark:text-gray-100">
-                    {customWeights[stat.key] || 0}/5
+                    {groupAvg}/5
                   </span>
                 </div>
               {/each}
@@ -397,7 +448,12 @@
 </div>
 
 <style>
-  /* Apple 스타일 슬라이더 */
+  /* 그룹별 색상 카드 스타일 */
+  .group-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Apple 스타일 슬라이더 - 그룹별 색상 */
   input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -405,32 +461,67 @@
     border-radius: 2px;
     background: #e5e7eb;
     outline: none;
+    transition: all 0.2s ease;
   }
 
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: #3b82f6;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
   }
 
   input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: #3b82f6;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  /* 그룹별 슬라이더 색상 */
+  .range-blue::-webkit-slider-thumb {
+    background: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+  .range-green::-webkit-slider-thumb {
+    background: #10b981;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  }
+  .range-purple::-webkit-slider-thumb {
+    background: #8b5cf6;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+  }
+  .range-orange::-webkit-slider-thumb {
+    background: #f59e0b;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
   }
 
   @media (prefers-color-scheme: dark) {
     input[type="range"] {
       background: #374151;
     }
+  }
+
+  /* 호버 애니메이션 */
+  .group-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* 레벨 바 애니메이션 */
+  .group-card .flex-1 {
+    transition: all 0.3s ease;
   }
 </style>
