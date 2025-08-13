@@ -104,3 +104,9 @@ export const appState = writable({
   isOnline: true,
   lastSync: new Date()
 });
+
+// 로그인 모달 상태
+export const navigationState = writable({
+  showLoginModal: false,
+  email: ''
+});
