@@ -73,15 +73,9 @@
   let canvas: HTMLCanvasElement;
   let isPreset = true;
 
-  // 가중치를 백분율로 표시하기 위한 정규화
-  function normalizeWeights(weights: Record<string, number>) {
-    const sum = Object.values(weights).reduce((a, b) => a + b, 0);
-    const scale = 100 / sum;
-    const normalized: Record<string, number> = {};
-    for (const key in weights) {
-      normalized[key] = Number((weights[key] * scale).toFixed(1));
-    }
-    return normalized;
+  // 가중치를 절대값으로 표시 (0-5 범위)
+  function getAbsoluteWeights(weights: Record<string, number>) {
+    return weights;
   }
 
   // 직무 프로파일 변경 시
@@ -110,8 +104,7 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    const normalizedWeights = normalizeWeights(customWeights);
-    drawRadarChart(ctx, normalizedWeights);
+    drawRadarChart(ctx, customWeights);
   }
 
   // 레이더 차트 그리기
@@ -190,13 +183,12 @@
 
   // 저장
   function saveRequirements() {
-    const normalizedWeights = normalizeWeights(customWeights);
     const data = {
       jobTitle,
       jobDescription,
       roleProfile: selectedRole,
       isPreset,
-      weights: normalizedWeights,
+      weights: customWeights,
       timestamp: new Date().toISOString()
     };
     
@@ -270,7 +262,7 @@
 
         <!-- 직무 프로파일 선택 -->
         <div class="space-y-4">
-          <h3 class="text-headline text-lg text-gray-900 dark:text-gray-100">능력치 프로파일</h3>
+          <h3 class="text-headline text-lg text-gray-900 dark:text-gray-100">적합성 프로파일</h3>
           
           <div class="flex gap-4 mb-4">
             <button 
@@ -363,7 +355,7 @@
       <!-- 우측: 시각화 및 미리보기 -->
       <section class="card-apple p-8">
         <div class="space-y-6">
-          <h2 class="text-headline text-xl text-gray-900 dark:text-gray-100">능력치 프로파일</h2>
+          <h2 class="text-headline text-xl text-gray-900 dark:text-gray-100">적합성 프로파일</h2>
           
           <!-- 레이더 차트 -->
           <div class="flex justify-center">
@@ -381,11 +373,10 @@
             
             <div class="grid grid-cols-2 gap-4">
               {#each STATS as stat}
-                {@const normalizedWeights = normalizeWeights(customWeights)}
                 <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
                   <span class="text-fine text-gray-700 dark:text-gray-300">{stat.name}</span>
                   <span class="text-fine font-semibold text-gray-900 dark:text-gray-100">
-                    {normalizedWeights[stat.key]?.toFixed(1) || '0.0'}%
+                    {customWeights[stat.key] || 0}/5
                   </span>
                 </div>
               {/each}
@@ -396,7 +387,7 @@
           <div class="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-2xl p-4">
             <p class="text-fine text-blue-800 dark:text-blue-200">
               💡 각 능력치는 0~5점으로 평가됩니다. 높은 점수일수록 해당 능력이 직무에 더 중요함을 의미합니다.
-              백분율은 전체 가중치 중 차지하는 비율을 나타냅니다.
+              수치는 절대값으로 표시되어 원의 최대 범위를 넘지 않습니다.
             </p>
           </div>
         </div>
