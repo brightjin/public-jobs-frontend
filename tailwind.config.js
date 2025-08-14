@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  safelist: [
+    // 동적 클래스들을 안전 목록에 추가
+    'bg-blue-500',
+    'bg-green-500',
+    'bg-purple-500',
+    'bg-orange-500'
+  ],
   theme: {
     extend: {
       colors: {

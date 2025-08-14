@@ -120,6 +120,13 @@
     const N = STATS.length;
 
     // 그룹별 색상 정의
+    const groupColorMap = {
+      'A': 'blue',
+      'B': 'green', 
+      'C': 'purple',
+      'D': 'orange'
+    };
+    
     const groupColors = {
       'A': '#3b82f6', // blue-500
       'B': '#10b981', // green-500
