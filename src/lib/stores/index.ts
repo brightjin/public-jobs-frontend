@@ -110,3 +110,14 @@ export const navigationState = writable({
   showLoginModal: false,
   email: ''
 });
+
+// 질문 인터페이스
+export interface Question {
+  id: string;
+  subject: string;
+  text: string;
+  options: number[];
+  answer?: string;
+}
+
+export const questions = writable<Question[]>([]);

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { user, navigationState } from '$lib/stores';
+  import { user,  navigationState } from '$lib/stores';
   import Button from './Button.svelte';
   import LoginModal from './LoginModal.svelte';
   import { env } from '$env/dynamic/public';
@@ -10,7 +10,8 @@
     { name: '채용공고', href: '/jobs', icon: '📄' },
     { name: '이력서', href: '/resume/upload', icon: '📝' },
     { name: 'AI 매칭', href: '/match', icon: '💡' },
-    { name: '챗봇', href: '/chat', icon: '🤖' }
+    { name: '챗봇', href: '/chat', icon: '🤖' },
+    { name: '신규등록', href: '/admin/jobs/new', icon: '✏️' }
   ];
   
   let mobileMenuOpen = $state(false);

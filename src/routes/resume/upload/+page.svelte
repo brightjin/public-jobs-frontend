@@ -220,7 +220,7 @@
                 <div class="flex items-center space-x-3">
                   <input
                     type="text"
-                    bind:value={experience}
+                    bind:value={formData.experience[index]}
                     class="input-apple flex-1"
                     placeholder="예: 소프트웨어 개발 3년 (2021-2024)"
                   />
@@ -253,7 +253,7 @@
                 <div class="flex items-center space-x-3">
                   <input
                     type="text"
-                    bind:value={skill}
+                    bind:value={formData.skills[index]}
                     class="input-apple flex-1"
                     placeholder="예: JavaScript/TypeScript"
                   />
@@ -286,7 +286,7 @@
                 <div class="flex items-center space-x-3">
                   <input
                     type="text"
-                    bind:value={education}
+                    bind:value={formData.education[index]}
                     class="input-apple flex-1"
                     placeholder="예: 컴퓨터공학과 학사 (2020년 졸업)"
                   />
