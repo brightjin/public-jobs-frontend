@@ -6,7 +6,31 @@ export default {
     'bg-blue-500',
     'bg-green-500',
     'bg-purple-500',
-    'bg-orange-500'
+    'bg-orange-500',
+    'bg-white',
+    'bg-gray-50',
+    'bg-gray-100',
+    'bg-gray-200',
+    'bg-gray-700',
+    'bg-gray-800',
+    'text-white',
+    'text-black',
+    'text-gray-300',
+    'text-gray-400',
+    'text-gray-600',
+    'text-gray-700',
+    'text-gray-900',
+    'border-gray-200',
+    'border-gray-700',
+    'hover:bg-gray-300',
+    'hover:bg-gray-600',
+    'dark:bg-gray-700',
+    'dark:bg-gray-800',
+    'dark:text-gray-200',
+    'dark:text-white',
+    'dark:border-gray-600',
+    'dark:border-gray-700',
+    'dark:hover:bg-gray-600'
   ],
   theme: {
     extend: {
@@ -29,5 +53,7 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
 }

@@ -104,3 +104,20 @@ export const appState = writable({
   isOnline: true,
   lastSync: new Date()
 });
+
+// 로그인 모달 상태
+export const navigationState = writable({
+  showLoginModal: false,
+  email: ''
+});
+
+// 질문 인터페이스
+export interface Question {
+  id: string;
+  subject: string;
+  text: string;
+  options: number[];
+  answer?: string;
+}
+
+export const questions = writable<Question[]>([]);

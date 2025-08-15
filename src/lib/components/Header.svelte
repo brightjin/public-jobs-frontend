@@ -1,7 +1,8 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { user } from '$lib/stores';
+  import { user,  navigationState } from '$lib/stores';
   import Button from './Button.svelte';
+  import LoginModal from './LoginModal.svelte';
   import { env } from '$env/dynamic/public';
   
   const navigation = [
@@ -14,6 +15,16 @@
   ];
   
   let mobileMenuOpen = $state(false);
+
+  let showLoginModal= $state($navigationState.showLoginModal);
+  
+  function handleLogin() {
+      showLoginModal = !showLoginModal;
+  }
+    
+  function handleLogout() {
+    user.set(null);
+  }
 </script>
 
 <header class="bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 sticky top-0 z-50 transition-all duration-300">
@@ -52,12 +63,12 @@
         {#if $user}
           <div class="flex items-center space-x-2">
             <span class="text-sm text-apple-text-secondary">안녕하세요, {$user.name}님</span>
-            <Button variant="outline" size="sm">로그아웃</Button>
+            <Button variant="outline" size="sm" onclick={handleLogout}>로그아웃</Button>
           </div>
         {:else}
           <div class="flex items-center space-x-2">
-            <Button variant="secondary" size="sm">로그인</Button>
-            <Button variant="primary" size="sm">회원가입</Button>
+            <Button variant="secondary" size="sm" onclick={handleLogin}>로그인</Button>
+            <Button variant="primary" size="sm" onclick={() => window.location.href='/signup'}>회원가입</Button>
           </div>
         {/if}
       </div>
@@ -66,6 +77,7 @@
       <div class="md:hidden">
         <button
           type="button"
+          aria-label="모바일 메뉴 열기"
           class="p-2 rounded-lg text-apple-text-secondary hover:text-apple-text hover:bg-gray-100 dark:hover:bg-gray-800"
           onclick={() => mobileMenuOpen = !mobileMenuOpen}
         >
@@ -95,20 +107,32 @@
           {/each}
         </div>
         
-        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-          {#if $user}
-            <div class="space-y-2">
-              <p class="px-3 text-sm text-apple-text-secondary">안녕하세요, {$user.name}님</p>
-              <Button variant="outline" size="sm" class="w-full">로그아웃</Button>
-            </div>
-          {:else}
-            <div class="space-y-2">
-              <Button variant="secondary" size="sm" class="w-full">로그인</Button>
-              <Button variant="primary" size="sm" class="w-full">회원가입</Button>
-            </div>
-          {/if}
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            {#if $user}
+              <div class="space-y-2">
+                <p class="px-3 text-sm text-apple-text-secondary">안녕하세요, {$user.name}님</p>
+                <Button variant="outline" size="sm" class="w-full" onclick={handleLogout}>로그아웃</Button>
+              </div>
+            {:else}
+              <div class="space-y-2">
+                <!-- 버튼 부분 수정 -->
+                  <Button variant="secondary" size="sm" onclick={handleLogin}>로그인</Button>
+                  <Button variant="primary" size="sm" onclick={() => window.location.href='/signup'}>회원가입</Button>
+
+              </div>
+            {/if}
+          </div>
         </div>
-      </div>
+      {/if}
+    <!-- 로그인 모달 -->
+    {#if showLoginModal}
+      <LoginModal 
+        on:close={() => showLoginModal = false}
+        on:success={() => showLoginModal = false}
+        on:switchToSignup={() => {
+          showLoginModal = false;
+        }}
+      />
     {/if}
   </nav>
 </header>
