@@ -57,6 +57,11 @@ npm run build
 ```bash
 npm run preview
 ```
+### 오류발생시
+```bsah
+npm install -D tailwindcss postcss autoprefixer
+```
+
 
 ## 📁 프로젝트 구조
 
