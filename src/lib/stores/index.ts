@@ -16,9 +16,54 @@ export interface User {
     jobType?: string;
     notifications?: boolean;
   };
+  // 사용자의 직무 적합성 프로파일
+  jobProfile?: {
+    // Big Five 성격 특성
+    conscientiousness: number;
+    openness: number;
+    extraversion: number;
+    agreeableness: number;
+    emotional_stability: number;
+    // 직무 역량
+    technical_mastery: number;
+    cognitive_problem_solving: number;
+    interpersonal_influence: number;
+    self_management: number;
+    adaptability: number;
+    // 학습 민첩성
+    learning_speed: number;
+    people_agility: number;
+    result_agility: number;
+    // EQ (감성지능)
+    self_awareness: number;
+    self_regulation: number;
+    empathy_social: number;
+  };
 }
 
-export const user = writable<User | null>(null);
+// Mock 사용자 데이터 (테스트용)
+const mockUser: User = {
+  id: 'user1',
+  name: '김개발',
+  email: 'kim@example.com',
+  role: 'user',
+  avatar: '/images/avatar.jpg',
+  preferences: {
+    location: '서울',
+    salary: '4000만원 이상',
+    jobType: 'IT/개발',
+    notifications: true
+  },
+  // 사용자의 실제 능력치 (정보보안 개발자)
+  jobProfile: {
+    conscientiousness: 4, openness: 4, extraversion: 3, agreeableness: 4, emotional_stability: 3,
+    technical_mastery: 4, cognitive_problem_solving: 4, interpersonal_influence: 3, self_management: 3, adaptability: 4,
+    learning_speed: 5, people_agility: 3, result_agility: 3,
+    self_awareness: 3, self_regulation: 3, empathy_social: 4,
+  }
+};
+
+export const user = writable<User | null>(mockUser);
 
 // 채용공고 상태 관리 (확장된 인터페이스)
 export interface Job {
@@ -45,6 +90,25 @@ export interface Job {
   isHot?: boolean;
   isNew?: boolean;
   isUrgent?: boolean;
+  // 직무 적합성 프로파일 (채용공고의 요구사항)
+  jobProfile?: {
+    conscientiousness: number;
+    openness: number;
+    extraversion: number;
+    agreeableness: number;
+    emotional_stability: number;
+    technical_mastery: number;
+    cognitive_problem_solving: number;
+    interpersonal_influence: number;
+    self_management: number;
+    adaptability: number;
+    learning_speed: number;
+    people_agility: number;
+    result_agility: number;
+    self_awareness: number;
+    self_regulation: number;
+    empathy_social: number;
+  };
 }
 
 export const jobs = writable<Job[]>([]);

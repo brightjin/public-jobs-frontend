@@ -24,7 +24,14 @@ export const mockJobs: Job[] = [
     viewCount: 1250,
     isHot: true,
     isNew: false,
-    isUrgent: true
+    isUrgent: true,
+    // 백엔드 개발자 프로파일 (정보보안 특화)
+    jobProfile: {
+      conscientiousness: 5, openness: 3, extraversion: 2, agreeableness: 3, emotional_stability: 4,
+      technical_mastery: 5, cognitive_problem_solving: 5, interpersonal_influence: 3, self_management: 4, adaptability: 4,
+      learning_speed: 4, people_agility: 2, result_agility: 4,
+      self_awareness: 3, self_regulation: 4, empathy_social: 3,
+    }
   },
   {
     id: '2',
@@ -48,7 +55,14 @@ export const mockJobs: Job[] = [
     viewCount: 890,
     isHot: false,
     isNew: true,
-    isUrgent: false
+    isUrgent: false,
+    // 디지털정책 기획자 프로파일
+    jobProfile: {
+      conscientiousness: 4, openness: 5, extraversion: 4, agreeableness: 4, emotional_stability: 3,
+      technical_mastery: 3, cognitive_problem_solving: 4, interpersonal_influence: 4, self_management: 4, adaptability: 5,
+      learning_speed: 4, people_agility: 4, result_agility: 4,
+      self_awareness: 4, self_regulation: 4, empathy_social: 4,
+    }
   },
   {
     id: '3',
@@ -72,7 +86,14 @@ export const mockJobs: Job[] = [
     viewCount: 650,
     isHot: true,
     isNew: true,
-    isUrgent: false
+    isUrgent: false,
+    // AI교육 전문관 프로파일 
+    jobProfile: {
+      conscientiousness: 4, openness: 5, extraversion: 3, agreeableness: 4, emotional_stability: 4,
+      technical_mastery: 4, cognitive_problem_solving: 5, interpersonal_influence: 4, self_management: 4, adaptability: 5,
+      learning_speed: 5, people_agility: 3, result_agility: 4,
+      self_awareness: 4, self_regulation: 4, empathy_social: 4,
+    }
   },
   {
     id: '4',
@@ -96,7 +117,14 @@ export const mockJobs: Job[] = [
     viewCount: 1450,
     isHot: true,
     isNew: false,
-    isUrgent: false
+    isUrgent: false,
+    // 스마트시티 개발자 프로파일
+    jobProfile: {
+      conscientiousness: 4, openness: 4, extraversion: 3, agreeableness: 3, emotional_stability: 4,
+      technical_mastery: 5, cognitive_problem_solving: 5, interpersonal_influence: 3, self_management: 4, adaptability: 4,
+      learning_speed: 4, people_agility: 3, result_agility: 4,
+      self_awareness: 3, self_regulation: 4, empathy_social: 3,
+    }
   },
   {
     id: '5',
@@ -120,7 +148,14 @@ export const mockJobs: Job[] = [
     viewCount: 720,
     isHot: false,
     isNew: false,
-    isUrgent: false
+    isUrgent: false,
+    // 데이터분석 전문가 프로파일
+    jobProfile: {
+      conscientiousness: 4, openness: 4, extraversion: 2, agreeableness: 3, emotional_stability: 4,
+      technical_mastery: 5, cognitive_problem_solving: 5, interpersonal_influence: 3, self_management: 4, adaptability: 4,
+      learning_speed: 4, people_agility: 2, result_agility: 5,
+      self_awareness: 4, self_regulation: 4, empathy_social: 3,
+    }
   },
   {
     id: '6',
@@ -144,7 +179,14 @@ export const mockJobs: Job[] = [
     viewCount: 380,
     isHot: false,
     isNew: true,
-    isUrgent: false
+    isUrgent: false,
+    // 관광정책 기획자 프로파일
+    jobProfile: {
+      conscientiousness: 4, openness: 4, extraversion: 4, agreeableness: 5, emotional_stability: 4,
+      technical_mastery: 2, cognitive_problem_solving: 4, interpersonal_influence: 5, self_management: 4, adaptability: 4,
+      learning_speed: 3, people_agility: 5, result_agility: 4,
+      self_awareness: 4, self_regulation: 4, empathy_social: 5,
+    }
   },
   {
     id: '7',
@@ -168,7 +210,14 @@ export const mockJobs: Job[] = [
     viewCount: 560,
     isHot: false,
     isNew: false,
-    isUrgent: true
+    isUrgent: true,
+    // 환경정책 연구원 프로파일
+    jobProfile: {
+      conscientiousness: 5, openness: 4, extraversion: 2, agreeableness: 3, emotional_stability: 4,
+      technical_mastery: 4, cognitive_problem_solving: 5, interpersonal_influence: 3, self_management: 5, adaptability: 3,
+      learning_speed: 4, people_agility: 2, result_agility: 4,
+      self_awareness: 4, self_regulation: 5, empathy_social: 3,
+    }
   },
   {
     id: '8',
@@ -192,7 +241,14 @@ export const mockJobs: Job[] = [
     viewCount: 920,
     isHot: true,
     isNew: true,
-    isUrgent: false
+    isUrgent: false,
+    // 과학기술 기획관 프로파일
+    jobProfile: {
+      conscientiousness: 4, openness: 5, extraversion: 3, agreeableness: 4, emotional_stability: 4,
+      technical_mastery: 4, cognitive_problem_solving: 4, interpersonal_influence: 4, self_management: 4, adaptability: 4,
+      learning_speed: 4, people_agility: 3, result_agility: 4,
+      self_awareness: 4, self_regulation: 4, empathy_social: 4,
+    }
   }
 ];
 
